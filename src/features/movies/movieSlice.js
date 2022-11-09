@@ -4,7 +4,10 @@ import axios from "axios";
 const initialState = {
   movies: [],
   page: 1,
-  error: false,
+  error: {
+    message: "",
+    hasError: false,
+  },
   loading: false,
 };
 
@@ -16,29 +19,33 @@ const movieSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTrending.fulfilled, (state, action) => {
-      console.log(`🚀 ~ action`, action);
-      state.movies.push(action.payload);
-      state.loading = state.error = false;
+      state.movies.push(action.payload.data.movies);
+      state.loading = state.error.hasError = false;
     }),
       builder.addCase(fetchTrending.pending, (state, action) => {
         state.loading = true;
       }),
       builder.addCase(fetchTrending.rejected, (state, action) => {
-        state.error = true;
+        state.error.hasError = true;
+        state.error.message = action.payload.message;
       });
   },
 });
 
-const fetchTrending = createAsyncThunk(
+export const fetchTrending = createAsyncThunk(
   "movies/fetchTrending",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(
         "https://yts.mx/api/v2/list_movies.json?page=1"
       );
-      thunkAPI.fulfillWithValue(response.data);
+      // thunkAPI.fulfillWithValue(response.data);
+      return response.data;
     } catch (error) {
       console.log(error);
+      // thunkAPI.fulfillWithValue(response.message);
     }
   }
 );
+
+export default movieSlice.reducer;
