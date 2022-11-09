@@ -19,7 +19,7 @@ const movieSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTrending.fulfilled, (state, action) => {
-      state.movies.push(action.payload.data.movies);
+      state.movies = action.payload.data.movies;
       state.loading = state.error.hasError = false;
     }),
       builder.addCase(fetchTrending.pending, (state, action) => {
@@ -37,13 +37,11 @@ export const fetchTrending = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(
-        "https://yts.mx/api/v2/list_movies.json?page=1"
+        "https://yts.mx/api/v2/list_movies.json?page=1&limit=24"
       );
-      // thunkAPI.fulfillWithValue(response.data);
       return response.data;
     } catch (error) {
-      console.log(error);
-      // thunkAPI.fulfillWithValue(response.message);
+      thunkAPI.fulfillWithValue(response.message);
     }
   }
 );
