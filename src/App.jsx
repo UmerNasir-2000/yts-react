@@ -1,4 +1,5 @@
 import Navbar from "./shared/Navbar/navbar";
+import Footer from "./shared/Footer/footer";
 import Home from "./pages/Home";
 import HD from "./pages/HD";
 import "./App.css";
@@ -17,6 +18,7 @@ function App() {
           <Route path="/trending" element={<Trending />} />
           <Route path="/browse" element={<BrowseMovies />} />
         </Routes>
+        <Footer />
       </Router>
     </>
   );

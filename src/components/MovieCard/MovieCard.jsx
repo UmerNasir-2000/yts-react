@@ -21,7 +21,7 @@ const MovieCard = ({ image, title, year }) => {
 MovieCard.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
 };
 
 export default MovieCard;

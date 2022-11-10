@@ -12,4 +12,6 @@
   text-align: center;
   color: var(--color-accent);
   margin: 20px;
+  margin-top: 80px;
+  z-index: 1;
 }
