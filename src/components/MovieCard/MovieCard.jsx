@@ -8,6 +8,7 @@ const MovieCard = ({ image, title, year }) => {
         className={styles.card__img}
         style={{ backgroundImage: `url(${image})` }}
       ></div>
+
       <h4 className={styles.card__title}>
         {title.length > 20 ? `${title.substring(0, 18)}...` : title}
       </h4>

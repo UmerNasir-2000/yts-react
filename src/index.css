@@ -41,3 +41,15 @@ a:hover {
 img {
   width: 100%;
 }
+
+.btn {
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #fff;
+  background-color: inherit;
+  font-weight: bold;
+  border: 1px solid #fff;
+  font-size: 16px;
+  border-radius: 6px;
+}
